@@ -51,7 +51,7 @@ services:
   # Frontend (Next.js)
   frontend:
     build:
-      context: ./admin-antd-nextjs
+      context: ./admin-client
       dockerfile: Dockerfile
     container_name: admin-frontend
     restart: unless-stopped

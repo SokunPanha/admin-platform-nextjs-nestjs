@@ -11,8 +11,8 @@ FILES=(
     "admin-api/Dockerfile"
     "admin-api/.dockerignore"
     "admin-api/docker-entrypoint.sh"
-    "admin-antd-nextjs/Dockerfile"
-    "admin-antd-nextjs/.dockerignore"
+    "admin-client/Dockerfile"
+    "admin-client/.dockerignore"
 )
 
 for file in "${FILES[@]}"; do
@@ -58,18 +58,18 @@ else
 fi
 
 # Check frontend scripts
-cd ../admin-antd-nextjs
+cd ../admin-client
 if npm run 2>&1 | grep -q "build"; then
-    echo "  ✓ admin-antd-nextjs has build script"
+    echo "  ✓ admin-client has build script"
 else
-    echo "  ✗ admin-antd-nextjs missing build script"
+    echo "  ✗ admin-client missing build script"
     exit 1
 fi
 
 if npm run 2>&1 | grep -q "start"; then
-    echo "  ✓ admin-antd-nextjs has start script"
+    echo "  ✓ admin-client has start script"
 else
-    echo "  ✗ admin-antd-nextjs missing start script"
+    echo "  ✗ admin-client missing start script"
     exit 1
 fi
 
@@ -84,15 +84,15 @@ else
     echo "  ✗ admin-api/.env.example missing"
 fi
 
-if [ -f "admin-antd-nextjs/.env.example" ]; then
-    echo "  ✓ admin-antd-nextjs/.env.example exists"
+if [ -f "admin-client/.env.example" ]; then
+    echo "  ✓ admin-client/.env.example exists"
 else
-    echo "  ✗ admin-antd-nextjs/.env.example missing"
+    echo "  ✗ admin-client/.env.example missing"
 fi
 
 echo ""
 echo "✓ Checking Next.js standalone output configuration..."
-if grep -q "output.*standalone" admin-antd-nextjs/next.config.ts; then
+if grep -q "output.*standalone" admin-client/next.config.ts; then
     echo "  ✓ Next.js configured for standalone output"
 else
     echo "  ⚠ Next.js not configured for standalone output"
